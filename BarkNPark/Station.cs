@@ -22,7 +22,7 @@ namespace BarkNPark
 
     }
 
-    class Station : IStation
+    public class Station : IStation
     {
         StationCode station_code;
         Random r = new Random();

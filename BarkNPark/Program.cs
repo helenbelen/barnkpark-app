@@ -11,6 +11,7 @@ namespace BarkNPark
 
         public static void Main (string [] args)
         {
+            
             System system = new System();
             Console.WriteLine("Welcome to Bark N Park Console Tester");
             Console.WriteLine("Please enter a commad: a = checkin, b- extend time, c-dispense item, d- checkout, s- summary");

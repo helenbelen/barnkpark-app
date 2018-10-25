@@ -30,9 +30,9 @@ namespace BarkNPark
     public class Appointment : IAppointment
     {
         System system;
-        IStation appointmentStation;
-        string appointmentName;
-        DateTime appointmentCheckin, scheduledAppointmentCheckout, actualAppointmentCheckout;
+        protected IStation appointmentStation;
+        protected string appointmentName;
+        protected DateTime appointmentCheckin, scheduledAppointmentCheckout, actualAppointmentCheckout;
         List<ISale> appointmentSales = new List<ISale>();
 
         public Appointment(System mySystem, string name, DateTime checkinTime, DateTime checkoutTime)
@@ -58,7 +58,7 @@ namespace BarkNPark
 
         public DateTime ActualCheckoutTime { get { return actualAppointmentCheckout; } set { actualAppointmentCheckout = value; } }
 
-        public int Checkin(IStation station, double duration)
+        public virtual int Checkin(IStation station, double duration)
         {
             if (durationValid(this.CheckInTime, duration))
             {
@@ -116,7 +116,7 @@ namespace BarkNPark
 
         }
 
-        public int ProcessTransaction(ItemType[] items, TransactionType type)
+        public virtual int ProcessTransaction(ItemType[] items, TransactionType type)
         {
             Sale transaction = null;
            

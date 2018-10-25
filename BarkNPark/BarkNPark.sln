@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarkNPark", "BarkNPark.csproj", "{4E9EC5F6-0FB2-413E-B44D-EB363888D46D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarkNParkApplication", "..\BarkNParkApplication\BarkNParkApplication.csproj", "{DC533CEE-6768-4ACD-BC76-242450EBEA51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4E9EC5F6-0FB2-413E-B44D-EB363888D46D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E9EC5F6-0FB2-413E-B44D-EB363888D46D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E9EC5F6-0FB2-413E-B44D-EB363888D46D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC533CEE-6768-4ACD-BC76-242450EBEA51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC533CEE-6768-4ACD-BC76-242450EBEA51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC533CEE-6768-4ACD-BC76-242450EBEA51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC533CEE-6768-4ACD-BC76-242450EBEA51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

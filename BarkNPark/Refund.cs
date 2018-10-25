@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BarkNPark
 {
-    class Refund : Sale
+    public class Refund : Sale
     {
         ItemType[] refundItems;
         private int REFUND_NUM = 1;
@@ -51,8 +51,8 @@ namespace BarkNPark
 
             }
 
-            receipt += String.Format("Tax Refunded : {0}", calculateTaxAmount(.10)) + "\n";
-            receipt += String.Format("Total Refund : {0}", calculateFinalTotal(.10)) + "\n";
+            receipt += String.Format("Tax Refunded : {0}", calculateTaxAmount()) + "\n";
+            receipt += String.Format("Total Refund : {0}", calculateFinalTotal()) + "\n";
 
             return receipt;
         }

@@ -21,13 +21,18 @@ namespace BarkNPark
     }
     public class System
     {
-        List<IStation> stations = new List<IStation>() { new Station(StationCode.STATION_0), new Station(StationCode.STATION_1), new Station(StationCode.STATIOn_2) };
-        List<IAppointment> appointments = new List<IAppointment>() { };
+        protected List<IStation> stations;
+        List<IAppointment> appointments;
 
+        public System()
+        {
+            stations = new List<IStation>() { new Station(StationCode.STATION_0), new Station(StationCode.STATION_1), new Station(StationCode.STATIOn_2) };
+             appointments = new List<IAppointment>() { };
+        }
         
         public List<IStation> listStations() { return stations; }
 
-        public int CheckIn( string name, double duration)
+        public virtual int CheckIn( string name, double duration)
         {
 
             IStation availStation = getFirstAvailableStation();

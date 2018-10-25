@@ -20,10 +20,13 @@ namespace BarkNPark
     interface ISale {
 
         int ProcessPayment(string payPalEmail);
-
+        double getSubTotal();
+        double getFinalTotal();
+        double getTaxTotal();
+        char getTaxCode();
     }
 
-    class Sale : ISale
+    public class Sale : ISale
     {
         ItemType[] saleItems;
         List<ItemType> paidItems = new List<ItemType>();
@@ -38,24 +41,35 @@ namespace BarkNPark
         private int SALE_NUM = 1;
         protected double SALE_TOTAL = 0;
         protected double FINAL_TOTAL = 0;
-
+        protected double TAX_TOTAL = 0;
+        protected char TAX_CODE = 'D';
         public Sale(ItemType[] items)
         {
             saleItems = items;
         }
 
         private int SaleNumber { get { return SALE_NUM++; } }
-        
+        public double getSubTotal() => SALE_TOTAL;
+        public double getFinalTotal() => FINAL_TOTAL;
+        public double getTaxTotal() => TAX_TOTAL;
+        public char getTaxCode() => TAX_CODE;
+
+
         private double addToTotal(double amount)
         {
             return SALE_TOTAL += amount;
         }
-        protected double calculateTaxAmount(double taxRate)
+        protected double calculateTaxAmount(char taxRate = 'D')
         {
-            return SALE_TOTAL * taxRate;
+            if (taxRate == 'D')
+                TAX_TOTAL = SALE_TOTAL * .10;
+            else
+                TAX_TOTAL = SALE_TOTAL * .15;
+            return TAX_TOTAL;
         }
 
-        protected double calculateFinalTotal(double taxRate)
+        
+        protected double calculateFinalTotal(char taxRate = 'D')
         {
             FINAL_TOTAL = SALE_TOTAL + calculateTaxAmount(taxRate);
             
@@ -75,7 +89,7 @@ namespace BarkNPark
             }
             if (currentSaleTotal < SALE_TOTAL)
             {
-                calculateFinalTotal(.10);
+                calculateFinalTotal();
                 return (int)ErrorCode.SUCCESS;
             }
             return (int)ErrorCode.PAY_FAIL;
@@ -110,8 +124,8 @@ namespace BarkNPark
 
             }
 
-            receipt += String.Format("Tax : {0}", calculateTaxAmount(.10)) + "\n";
-            receipt += String.Format("Total Cost : {0}", calculateFinalTotal(.10)) + "\n";
+            receipt += String.Format("Tax : {0}", calculateTaxAmount()) + "\n";
+            receipt += String.Format("Total Cost : {0}", calculateFinalTotal()) + "\n";
 
             return receipt;
         }
