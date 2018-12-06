@@ -19,6 +19,8 @@ namespace BarkNPark
         PAY_FAIL = 8,
         SUCCESS = 200,
     }
+
+   
     public class System
     {
         protected List<IStation> stations;
@@ -39,15 +41,22 @@ namespace BarkNPark
             if (availStation != null)
             {
                 DateTime checkinTime = DateTime.Now;
-                Appointment newappt = new Appointment(this, name, checkinTime,checkinTime.AddMinutes(duration));
-                int confCode = newappt.Checkin(availStation,duration);
-                if ( confCode != (int)ErrorCode.SUCCESS)
-                {
+                try {
+                    Appointment newappt = new Appointment(this, name, checkinTime, checkinTime.AddMinutes(duration));
+                    int confCode = newappt.Checkin(availStation, duration);
+                    if (confCode != (int)ErrorCode.SUCCESS)
+                    {
+                        return confCode;
+                    }
+
+                    appointments.Add(newappt);
                     return confCode;
+                } catch (ArgumentOutOfRangeException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return (int)ErrorCode.IN_FAIL;
                 }
 
-                appointments.Add(newappt);
-                return confCode;
             }
             else
             {
@@ -57,26 +66,30 @@ namespace BarkNPark
             
         }
 
-        public int Checkout(string name)
+        public virtual int Checkout(string name)
         {
-            IAppointment relappt = getAppointmentByName(name);
-
-           
-           return relappt.Checkout();
+            if (name != null)
+            {
+                IAppointment relappt = getAppointmentByName(name);
+                return relappt.Checkout();
+            }
+            return (int)ErrorCode.OUT_FAIL;
            
 
         }
 
-        public int requestextension(string name, double timeToAdd)
+        public virtual int requestextension(string name, double timeToAdd)
         {
-            IAppointment relappt = getAppointmentByName(name);
-   
-                       
-           return relappt.ExtendTime(timeToAdd);
-        
+            if (name != null && timeToAdd >= 0)
+            {
+                IAppointment relappt = getAppointmentByName(name);
+                return relappt.ExtendTime(timeToAdd);
+            }
+
+            return (int)ErrorCode.EXT_FAIL;
         }
 
-        public int addItem(string name,ItemType [] items)
+        public virtual int addItem(string name,ItemType [] items)
         {
             IAppointment relappt = getAppointmentByName(name);
             if (relappt != null)

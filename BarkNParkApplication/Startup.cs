@@ -10,11 +10,14 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using BarkNParkApplication.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+
 
 namespace BarkNParkApplication
 {
     public class Startup
     {
+        //private string _connection;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,16 +29,24 @@ namespace BarkNParkApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            var connection = @"Data Source=barkparkdb.cffo0eijbrmb.us-east-1.rds.amazonaws.com;Initial Catalog=system;Integrated Security=False;User ID=admin;Password=sse-691-18;";
-            services.AddDbContext<BarkParkContext>(options => options.UseSqlServer(connection));
+
+            var connection = @"Data Source=barkparkdb.cffo0eijbrmb.us-east-1.rds.amazonaws.com;Initial Catalog=system;Integrated Security=False;User ID=admin;Password=;";
+
+
+           services.AddDbContext<BarkParkContext>(options => options.UseSqlServer(connection));
         }
+
+        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
             }
 
             app.UseMvc();

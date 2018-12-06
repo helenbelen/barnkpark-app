@@ -8,11 +8,10 @@ namespace BarkNParkApplication.Models
     {
         public BarkParkContext()
         {
-        }
 
-        public BarkParkContext(DbContextOptions<BarkParkContext> options)
-            : base(options)
-        {
+        }
+        public BarkParkContext(DbContextOptions<BarkParkContext> options): base(options) {
+
         }
 
         public virtual DbSet<Appointments> Appointments { get; set; }
@@ -25,14 +24,12 @@ namespace BarkNParkApplication.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=barkparkdb.cffo0eijbrmb.us-east-1.rds.amazonaws.com;Initial Catalog=system;Integrated Security=False;User ID=admin;Password=sse-691-18;");
+                optionsBuilder.UseSqlServer(@"Data Source=barkparkdb.cffo0eijbrmb.us-east-1.rds.amazonaws.com;Initial Catalog=system;Integrated Security=False;User ID=admin;Password=sse-691-18");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("ProductVersion", "2.2.0-preview3-35497");
-
             modelBuilder.Entity<Appointments>(entity =>
             {
                 entity.HasKey(e => e.ApptId);
@@ -89,8 +86,7 @@ namespace BarkNParkApplication.Models
                 entity.Property(e => e.TransTax)
                     .IsRequired()
                     .HasColumnName("trans_tax")
-                    .HasMaxLength(1)
-                    .IsUnicode(false);
+                    .HasColumnType("char(1)");
 
                 entity.Property(e => e.TransTotal)
                     .HasColumnName("trans_total")
@@ -99,8 +95,7 @@ namespace BarkNParkApplication.Models
                 entity.Property(e => e.TransType)
                     .IsRequired()
                     .HasColumnName("trans_type")
-                    .HasMaxLength(1)
-                    .IsUnicode(false);
+                    .HasColumnType("char(1)");
             });
 
             modelBuilder.Entity<Users>(entity =>
@@ -116,17 +111,17 @@ namespace BarkNParkApplication.Models
                 entity.Property(e => e.UserFirstname)
                     .IsRequired()
                     .HasColumnName("user_firstname")
-                    .HasMaxLength(10);
+                    .HasColumnType("nchar(10)");
 
                 entity.Property(e => e.UserLastname)
                     .IsRequired()
                     .HasColumnName("user_lastname")
-                    .HasMaxLength(10);
+                    .HasColumnType("nchar(10)");
 
                 entity.Property(e => e.UserPaypal)
                     .IsRequired()
                     .HasColumnName("user_paypal")
-                    .HasMaxLength(100);
+                    .HasColumnType("nchar(100)");
             });
         }
     }

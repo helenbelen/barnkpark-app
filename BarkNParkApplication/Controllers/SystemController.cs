@@ -16,6 +16,7 @@ namespace BarkNParkApplication.Controllers
         [Route("/api/appointments")]
         public ObjectResult GetAppointments()
         {
+           
             return new ObjectResult(system.SystemAppointments);
         }
 
@@ -24,7 +25,7 @@ namespace BarkNParkApplication.Controllers
         [Route("/api/stations")]
         public ObjectResult GetStations()
         {
-            return new ObjectResult(system.SystemStations);
+           return new ObjectResult(system.SystemStations);
         }
 
         // GET api/transactions
@@ -35,41 +36,62 @@ namespace BarkNParkApplication.Controllers
             return new ObjectResult(system.SystemTransactions);
         }
 
+        // GET api/transactions
+        [HttpGet]
+        [Route("/api/users")]
+        public ObjectResult GetUsers()
+        {
+            return new ObjectResult(system.SystemUsers);
+        }
 
         // GET api/getuser/5
-        [HttpGet("{id}")]
-        [Route("/api/getuser")]
-        public ObjectResult GetUser(int id)
+        [HttpGet("{name}")]
+        [Route("/api/getuser/{name}")]
+        public ObjectResult GetUser(string name)
         {
-            return new ObjectResult(system.SystemUser(id));
+            return new ObjectResult(system.SystemUser(name));
         }
 
         //api/adduser/{first}/{last}
         [HttpPost]
         [Route("/api/adduser")]
-        public ObjectResult AddUSer([FromBody]string first, [FromBody] string last)
+        public ObjectResult AddUSer([FromBody] BarkNParkApplication.Models.Users newUser)
         {
-            return new ObjectResult(system.AddUser(first, last));
+            return new ObjectResult(system.AddUser(newUser));
         }
 
-        // POST api/checkin
-        [HttpPost]
-        [Route("/api/checkin")]
-        public ObjectResult CheckIn([FromBody]string Name, [FromBody] double duration)
+        // GET api/checkin/sally/60
+        [HttpGet("{name}, {duration}")]
+
+        [Route("/api/checkin/{name}/{duration}")]
+        public ObjectResult CheckIn(string name, double duration)
         {
-            return new ObjectResult(system.CheckIn(Name, duration));
+            
+            return new ObjectResult(system.CheckIn(name, duration));
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        // GET api/checkout/sally
+        [HttpGet]
+        [Route("/api/checkout/{name}")]
+        public ObjectResult CheckOut(string name)
         {
+            return new ObjectResult(system.Checkout(name));
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // GET api/extend/sally/5
+        [HttpGet]
+        [Route("/api/extend/{name}/{duration}")]
+        public ObjectResult Extend(string name, double duration)
         {
+            return new ObjectResult(system.requestextension(name, duration));
+        }
+
+        // GET api/dispense/sally/item1,item2,item3
+        [HttpGet]
+        [Route("/api/dispense/{name}/{items}")]
+        public ObjectResult DispenseItem(string name, string items)
+        {
+            return new ObjectResult(system.addItem(name, items.Split(',')));
         }
     }
 }

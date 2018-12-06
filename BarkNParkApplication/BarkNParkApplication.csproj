@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <UserSecretsId>74b34c98-926f-4db0-906e-eb795cfe9ab7</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +19,21 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BarkNPark\BarkNPark.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="DatabaseResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DatabaseResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="DatabaseResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DatabaseResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

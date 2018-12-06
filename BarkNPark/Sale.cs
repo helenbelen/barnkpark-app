@@ -43,6 +43,7 @@ namespace BarkNPark
         protected double FINAL_TOTAL = 0;
         protected double TAX_TOTAL = 0;
         protected char TAX_CODE = 'D';
+
         public Sale(ItemType[] items)
         {
             saleItems = items;

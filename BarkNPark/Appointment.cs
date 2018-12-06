@@ -75,7 +75,7 @@ namespace BarkNPark
             return (int)ErrorCode.DUR_INV;
         }
 
-        public int Checkout()
+        public virtual int Checkout()
         {
             int confCode = -1;
             double minutesUnused = Math.Floor((DateTime.Now - this.ScheduledCheckOutTime).TotalHours);
@@ -93,14 +93,14 @@ namespace BarkNPark
             return confCode;
         }
 
-        public int DispenseItem(ItemType[] items)
+        public virtual int DispenseItem(ItemType[] items)
         {
             int confCode = ProcessTransaction(items, TransactionType.SALE);
             this.appointmentStation.DispenseItem(items);
             return (int)ErrorCode.SUCCESS;
         }
 
-        public int ExtendTime(double duration)
+        public virtual int ExtendTime(double duration)
         {
             DateTime temp = scheduledAppointmentCheckout;
             int confCode = -1;
@@ -148,7 +148,8 @@ namespace BarkNPark
 
         public ItemType[] createHoursArray(double numberofHours)
         {
-            int roundedHours = (int)Math.Ceiling(numberofHours);
+
+            int roundedHours = numberofHours >= 0 ? (int)Math.Ceiling(numberofHours) : (int)Math.Ceiling(numberofHours *-1);
             ItemType[] appoint_hours = new ItemType[roundedHours];
             for (int i = 0; i < appoint_hours.Length; i++)
             {
