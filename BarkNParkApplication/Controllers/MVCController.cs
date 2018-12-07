@@ -51,7 +51,7 @@ namespace BarkNParkApplication.Controllers
 
         }
 
-        public List<SelectListItem> GetItemList()
+        public MultiSelectList GetItemList(string[] selectedValues)
         {
             List<SelectListItem> items = new List<SelectListItem>();
                       
@@ -62,7 +62,7 @@ namespace BarkNParkApplication.Controllers
 
             items.Add(new SelectListItem { Text = "Toy", Value = "3" });
 
-            return items;
+            return new MultiSelectList(items, "Value","Text",selectedValues);
         }
 
         public List<SelectListItem> GetDurationList()
@@ -90,7 +90,7 @@ namespace BarkNParkApplication.Controllers
             ViewData["Message"] = appointments.Count() == 0 ? "This user has no appointments" : "This user has " + appointments.Count().ToString() + " appointments";
             ViewData["Username"] = SystemUsers;
             ViewData["ConfMessage"] = confirmation;
-            ViewBag.Items = GetItemList();
+            ViewBag.Items = GetItemList(null);
             ViewBag.Durations = GetDurationList();
             return View(appointments);
 
@@ -106,11 +106,12 @@ namespace BarkNParkApplication.Controllers
 
         
 
-        [HttpGet]
+        [HttpPost]
         [Route("/Dispense")]
-        public IActionResult Dispense(string username,string items)
+        public IActionResult Dispense(IFormCollection form)
         {
-            
+            string items = form["items"];
+            string username = form["username"];
             string confMessage = "Confirmation Code is: " + controller.DispenseItem(username, items).Value.ToString();
             return RedirectToAction("Appointments", "MVC", new { SystemUsers = username, confirmation = confMessage }); ;
         }

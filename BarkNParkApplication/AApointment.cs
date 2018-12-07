@@ -42,7 +42,7 @@ namespace BarkNParkApplication
            
             Transactions dbtrans = system.Context.Transactions.LastOrDefault();
             int newId = dbtrans == null ? 200 : dbtrans.TransId + 20;
-
+            int conf = transaction.ProcessPayment("email");
             this.system.Context.Add(
                 new Transactions {
 
@@ -57,7 +57,7 @@ namespace BarkNParkApplication
 
             );
             this.system.Context.SaveChanges();
-            return transaction.ProcessPayment("email");
+            return conf;
         }
 
         public override int Checkout()

@@ -16,7 +16,7 @@
     @using (Html.BeginForm("CreateAppointment", "MVC", FormMethod.Get))
     {
         <fieldset>
-
+            Select New Appointment Duration
             <div class="editor-field">
 
                 @Html.DropDownList("Durations")
@@ -76,7 +76,7 @@
                 </td>
                 <td>
 
-                    @using (Html.BeginForm("Dispense", "MVC", FormMethod.Get))
+                    @using (Html.BeginForm("Dispense", "MVC", FormMethod.Post))
                     {
                         <fieldset>
 

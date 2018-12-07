@@ -160,7 +160,7 @@ namespace BarkNPark
 
         public double requestTimeFrame(DateTime checkinTime, double duration)
         {
-            DateTime proposedCheckOut = checkinTime.AddMinutes(duration);
+            DateTime proposedCheckOut = this.scheduledAppointmentCheckout.AddMinutes(duration);
             TimeSpan minutesInStation = proposedCheckOut - checkinTime;
             return minutesInStation.TotalHours;
         }
