@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Bark N Park HOme Page";
+}
+
+
+<h2>Select Your Name</h2>
+
+
+<form action="/action_page.php">
+    <select name="cars">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="fiat">Fiat</option>
+        <option value="audi">Audi</option>
+    </select>
+    <br><br>
+    <button><a asp-area="" asp-controller="Home" asp-action="About">GO</a></button>
+    
+</form>

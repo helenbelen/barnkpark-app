@@ -30,7 +30,7 @@ namespace BarkNParkApplication
         {
             services.AddMvc();
 
-            var connection = @"Data Source=barkparkdb.cffo0eijbrmb.us-east-1.rds.amazonaws.com;Initial Catalog=system;Integrated Security=False;User ID=admin;Password=;";
+            var connection = @"Data Source=barkparkdb.cffo0eijbrmb.us-east-1.rds.amazonaws.com;Initial Catalog=system;Integrated Security=False;User ID=admin;Password=sse-691-18;";
 
 
            services.AddDbContext<BarkParkContext>(options => options.UseSqlServer(connection));

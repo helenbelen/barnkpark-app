@@ -1,0 +1,105 @@
+﻿@model IEnumerable<BarkNParkApplication.Models.Appointments>
+@{
+    ViewData["Title"] = "Appointments";
+}
+@{Layout = "Layout.cshtml";}
+
+<h2>Appointments</h2>
+<div class="panel panel-info">
+    <div class="panel-heading">@ViewData["Message"]</div>
+    <div class="panel-body"> @ViewData["ConfMessage"]</div>
+</div>
+
+
+<div class="well well-sm">
+    Create A New Appointment
+    @using (Html.BeginForm("CreateAppointment", "MVC", FormMethod.Get))
+    {
+        <fieldset>
+
+            <div class="editor-field">
+
+                @Html.DropDownList("Durations")
+                @Html.Hidden("username", @ViewData["Username"])
+
+            </div>
+
+            <p><input type="submit" value="Check In" /></p>
+
+
+        </fieldset>
+
+    }
+
+    @Html.ActionLink("View All Transactions", "Transactions", "MVC")
+</div>
+
+    <table class="table table-bordered table-responsive table-hover">
+        <tr>
+            <th>Appointment ID</th>
+            <th>Appointment Checkin </th>
+            <th>Appointment Checkout </th>
+            <th>Appointment Station</th>
+            <th>Extend Appointment</th>
+            <th>Dispense In Appointment</th>
+            <th>Checkout Of Appointment</th>
+
+        </tr>
+        @foreach (BarkNParkApplication.Models.Appointments d in Model)
+        {
+            <tr>
+                <td>@d.ApptId</td>
+                <td>@d.ApptCheckin</td>
+                <td>@d.ApptCheckout</td>
+                <td>@d.ApptStation</td>
+                <td>
+
+                    @using (Html.BeginForm("Extend", "MVC", FormMethod.Get))
+                    {
+                        <fieldset>
+
+                            <div class="editor-field">
+
+                                @Html.DropDownList("Durations")
+                                @Html.Hidden("username", @ViewData["Username"])
+
+                            </div>
+
+                            <p><input type="submit" value="Extend" /></p>
+
+
+                        </fieldset>
+
+                    }
+
+
+                </td>
+                <td>
+
+                    @using (Html.BeginForm("Dispense", "MVC", FormMethod.Get))
+                    {
+                        <fieldset>
+
+                            <div class="editor-field">
+
+                                @Html.ListBox("items", ViewBag.Items as MultiSelectList)
+                                @Html.Hidden("username", @ViewData["Username"])
+
+                            </div>
+
+                            <p><input type="submit" value="Dispense" /></p>
+
+
+                        </fieldset>
+
+                    }
+
+                </td>
+                <td>@Html.ActionLink("Checkout", "Checkout", "MVC", new { username = @ViewData["Username"] }, null)</td>
+            </tr>
+        }
+
+    </table>
+
+
+

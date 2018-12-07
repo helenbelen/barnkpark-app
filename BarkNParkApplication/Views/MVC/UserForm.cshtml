@@ -1,0 +1,21 @@
+﻿@model BarkNParkApplication.Models.Users
+@{
+    ViewData["Title"] = "CreateUser";
+}
+@{Layout = "Layout.cshtml";}
+
+<h2>New User Form</h2>
+
+
+
+@using (Html.BeginForm("CreateUser", "MVC", FormMethod.Get))
+{
+    <span>Enter Your First Name:</span> @Html.TextBoxFor(m => m.UserFirstname)<br />
+    <span>Enter Your Last Name: </span> @Html.TextBoxFor(m => m.UserLastname)<br />
+    <span>Enter Your Paypal Email: </span>@Html.TextBoxFor(m => m.UserPaypal)<br />
+
+    <input id="Submit" type="submit" value="submit" />
+}
+
+<hr />
+

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<BarkNParkApplication.Models.Transactions>
+@{
+    ViewData["Title"] = "System Transactions";
+}
+@{Layout = "Layout.cshtml";}
+
+<h2>Transactions</h2>
+
+@Html.ActionLink("Home", "Index", "MVC")
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>Transaction ID</th>
+        <th>Transaction Type </th>
+        <th>Transaction Tax Code </th>
+        <th>Transaction Subtotal</th>
+        <th>Transaction Total</th>
+        <th>Transaction Receipt</th>
+
+
+    </tr>
+    @foreach (BarkNParkApplication.Models.Transactions d in Model)
+    {
+        <tr>
+            <td>@d.TransId</td>
+            <td>@d.TransType</td>
+            <td>@d.TransTax</td>
+            <td>@d.TransSubtotal</td>
+            <td>@d.TransTotal</td>
+            <td>@d.TransReceipt</td>
+
+        </tr>
+    }
+
+</table>

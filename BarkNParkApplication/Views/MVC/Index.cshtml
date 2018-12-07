@@ -1,0 +1,30 @@
+﻿
+
+@{
+    ViewData["Title"] = "Welcome";
+}
+@{Layout = "Layout.cshtml";}
+
+<div class="container">
+    <div class="jumbotron">
+
+        @using (Html.BeginForm("Appointments", "MVC", FormMethod.Get))
+    {
+        <div class="panel panel-info">
+            <div class="panel-heading">Select Or Add Your Names</div>
+            <div class="panel-body">@ViewData["ConfMessage"]</div>
+            <div class="panel-body">
+                @Html.ActionLink("Create New User", "UserForm", "MVC")
+
+            <fieldset>
+
+                @Html.DropDownList("SystemUsers")
+                <button type="submit" class="btn">Submit</button>
+
+            </fieldset>
+            </div>
+            </div>
+
+}
+    </div>
+</div>

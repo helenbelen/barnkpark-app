@@ -61,7 +61,7 @@ namespace BarkNParkApplication {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data Source=barkparkdb.cffo0eijbrmb.us-east-1.rds.amazonaws.com;Initial Catalog=system;Integrated Security=False;User ID=admin;Password=;.
+        ///   Looks up a localized string similar to Data Source=barkparkdb.cffo0eijbrmb.us-east-1.rds.amazonaws.com;Initial Catalog=system;Integrated Security=False;User ID=admin;Password=sse-691-18;.
         /// </summary>
         internal static string ConnectionString {
             get {

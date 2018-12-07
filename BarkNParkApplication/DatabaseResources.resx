@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ConnectionString" xml:space="preserve">
-    <value>Data Source=barkparkdb.cffo0eijbrmb.us-east-1.rds.amazonaws.com;Initial Catalog=system;Integrated Security=False;User ID=admin;Password=;</value>
+    <value>Data Source=barkparkdb.cffo0eijbrmb.us-east-1.rds.amazonaws.com;Initial Catalog=system;Integrated Security=False;User ID=admin;Password=sse-691-18;</value>
   </data>
 </root>

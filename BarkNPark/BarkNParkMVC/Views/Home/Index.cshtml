@@ -1,0 +1,8 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var users = ViewData["Users"] as List<BarkNParkApplication.Models.Users>;
+}
+
+@Html.DropDownList("Users", new SelectList(users, "UserFirstname", "UserLastname"))
+
+<button><a asp-area="" asp-controller="Home" asp-action="About">About</a></button>
